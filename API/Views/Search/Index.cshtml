@@ -3,4 +3,77 @@
 *@
 @{
 }
-<h3>search</h3>
+<main class="container d-flex flex-column">
+
+    <form>
+        <div class="d-flex flex-column">
+            <label class="mb-2">Search</label>
+            <input class="form-control" type="text"/>
+
+            <div class=" mt-2 align-self-end">
+                <button class="btn btn-primary " type="button" data-bs-toggle="collapse" data-bs-target="#filter" aria-expanded="false" aria-controls="collapseWidthExample">
+                    Add Filters <i class="bi bi-arrow-down-short"></i>
+			    </button>
+			</div>
+
+            <div class="flex-row">
+                <div class="collapse mt-1" id="filter">
+                    <div class="card card-body bg-primary">
+
+                        <div class="d-flex flex-row">
+
+							<div class=" mt-2 align-self-end">
+								<button class="btn btn-primary " type="button" data-bs-toggle="collapse" data-bs-target="#type" aria-expanded="false" aria-controls="collapseWidthExample">
+									Type <i class="bi bi-arrow-down-short"></i>
+								</button>
+							</div>
+
+							<div class="collapse" id="type">
+								<div class="card card-body">
+									Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+								</div>
+							</div>
+
+
+
+
+							<div class=" mt-2 align-self-end">
+								<button class="btn btn-primary " type="button" data-bs-toggle="collapse" data-bs-target="#filter" aria-expanded="false" aria-controls="collapseWidthExample">
+									Genre<i class="bi bi-arrow-down-short"></i>
+								</button>
+							</div>
+
+							<div class=" mt-2 align-self-end">
+								<button class="btn btn-primary " type="button" data-bs-toggle="collapse" data-bs-target="#filter" aria-expanded="false" aria-controls="collapseWidthExample">
+									Year<i class="bi bi-arrow-down-short"></i>
+								</button>
+							</div>
+
+							<div class=" mt-2 align-self-end">
+								<button class="btn btn-primary " type="button" data-bs-toggle="collapse" data-bs-target="#filter" aria-expanded="false" aria-controls="collapseWidthExample">
+									Rating<i class="bi bi-arrow-down-short"></i>
+								</button>
+							</div>
+							<div class=" mt-2 align-self-end">
+								<button class="btn btn-primary " type="button" data-bs-toggle="collapse" data-bs-target="#filter" aria-expanded="false" aria-controls="collapseWidthExample">
+									Language<i class="bi bi-arrow-down-short"></i>
+								</button>
+							</div>
+                        </div>
+                        
+                    
+                    </div>
+                    </div>
+                </div>
+            
+            
+        </div>
+
+
+    </form>
+
+</main>
+
+@section Scripts{
+
+}
