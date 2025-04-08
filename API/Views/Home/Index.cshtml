@@ -2,7 +2,111 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<main class="container d-flex flex-column gap-5">
+
+    <!-- Hero section -->
+  
+
+    <section class="d-flex flex-column mt-5 gap-5">
+        <div class="d-flex  flex-column col-lg-9 gap-4">
+            <h1>Track What You Watch, Read, and Love.</h1>
+            <h5>Keep your books, movies, and anime in one organized hub.</h5>
+            <p>Search for any movie, book, or anime, add it to your list, and once finished, add a review and your thoughts about it! </p>
+            <a href="@Url.ActionLink("Index", "Search")" class="btn btn-primary w-50 ">Search</a>
+        </div>
+     
+    </section>
+
+    <section class="d-flex flex-column text-center gap-4 mb-4">
+        <h1>Feature Overview</h1>
+
+        <table class="table table-hover table-striped  table-bordered">
+            <tbody class="">
+                <tr>
+                    <td>
+                        📚
+                    </td>
+                    <td>
+                        Universal Library
+                    </td>
+                    <td>
+                        Track books, movies & anime in one place
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        ⭐
+                    </td>
+                    <td>
+                        Ratings & Reviews
+                    </td>
+                    <td>
+                        Rate and comment on each media
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        📈
+                    </td>
+                    <td>
+                        Progress Tracking
+                    </td>
+                    <td>
+                        Mark titles as “Plan to Watch”, “Watching”, or “Finished”
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        🔍
+                    </td>
+                    <td>
+                        Global Search
+                    </td>
+                    <td>
+                        Look up media from public APIs
+                    </td>
+                </tr> 
+                <tr>
+                    <td>
+                        🧾
+                    </td>
+                    <td>
+                        Personal Lists
+                    </td>
+                    <td>
+                        Build your own lists
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </section>
+
+    <section class="flex-column mt-3">
+        <h1 class="text-center mb-4">
+            Your media journey at a glance
+        </h1>
+    <div id="carouselExample" class="carousel slide">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                    <img src="https://placehold.co/600x400" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                    <img src="https://placehold.co/600x400" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                    <img src="https://placehold.co/600x400" class="d-block w-100" alt="...">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+    </section>
+
+</main>
