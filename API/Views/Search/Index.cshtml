@@ -1,79 +1,200 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-<main class="container d-flex flex-column">
+﻿<main class="container d-flex flex-column">
 
     <form>
         <div class="d-flex flex-column">
             <label class="mb-2">Search</label>
-            <input class="form-control" type="text"/>
+            <input class="form-control mb-3" type="text" />
 
-            <div class=" mt-2 align-self-end">
-                <button class="btn btn-primary " type="button" data-bs-toggle="collapse" data-bs-target="#filter" aria-expanded="false" aria-controls="collapseWidthExample">
-                    Add Filters <i class="bi bi-arrow-down-short"></i>
-			    </button>
-			</div>
+            <div class="flex-row card card-body p-2">
+                <div class="flex-row d-flex flex-wrap gap-2 justify-content-lg-end">
 
-            <div class="flex-row">
-                <div class="collapse mt-1" id="filter">
-                    <div class="card card-body bg-primary">
+                    <!-- Type Filter -->
+                    <div class="col-sm-auto position-relative">
+                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#typeFilter" aria-expanded="false" aria-controls="typeFilter">
+                            Type <i class="bi bi-arrow-down-short"></i>
+                        </button>
+                        <div class="collapse mt-2 position-absolute mt-2 z-3" id="typeFilter">
+                            <div class="card card-body" style="width:max-content">
+                                <div>
+                                    <input class="form-check-input" type="checkbox" value="" id="checkDefault">
+                                    <label class="form-check-label fs-6" for="checkDefault">
+                                        Movie
+                                    </label>
 
-                        <div class="d-flex flex-row">
+                                </div>
+                                <div>
+                                    <input class="form-check-input" type="checkbox" value="" id="checkDefault">
+                                    <label class="form-check-label fs-6" for="checkDefault">
+                                        TV-Series
+                                    </label>
 
-							<div class=" mt-2 align-self-end">
-								<button class="btn btn-primary " type="button" data-bs-toggle="collapse" data-bs-target="#type" aria-expanded="false" aria-controls="collapseWidthExample">
-									Type <i class="bi bi-arrow-down-short"></i>
-								</button>
-							</div>
+                                </div>
+                                <div>
+                                    <input class="form-check-input" type="checkbox" value="" id="checkDefault">
+                                    <label class="form-check-label fs-6" for="checkDefault">
+                                        Anime
+                                    </label>
 
-							<div class="collapse" id="type">
-								<div class="card card-body">
-									Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-								</div>
-							</div>
+                                </div>
+                                <div>
+                                    <input class="form-check-input" type="checkbox" value="" id="checkDefault">
+                                    <label class="form-check-label fs-6" for="checkDefault">
+                                        Book
+                                    </label>
 
-
-
-
-							<div class=" mt-2 align-self-end">
-								<button class="btn btn-primary " type="button" data-bs-toggle="collapse" data-bs-target="#filter" aria-expanded="false" aria-controls="collapseWidthExample">
-									Genre<i class="bi bi-arrow-down-short"></i>
-								</button>
-							</div>
-
-							<div class=" mt-2 align-self-end">
-								<button class="btn btn-primary " type="button" data-bs-toggle="collapse" data-bs-target="#filter" aria-expanded="false" aria-controls="collapseWidthExample">
-									Year<i class="bi bi-arrow-down-short"></i>
-								</button>
-							</div>
-
-							<div class=" mt-2 align-self-end">
-								<button class="btn btn-primary " type="button" data-bs-toggle="collapse" data-bs-target="#filter" aria-expanded="false" aria-controls="collapseWidthExample">
-									Rating<i class="bi bi-arrow-down-short"></i>
-								</button>
-							</div>
-							<div class=" mt-2 align-self-end">
-								<button class="btn btn-primary " type="button" data-bs-toggle="collapse" data-bs-target="#filter" aria-expanded="false" aria-controls="collapseWidthExample">
-									Language<i class="bi bi-arrow-down-short"></i>
-								</button>
-							</div>
+                                </div>
+                            </div>
                         </div>
-                        
-                    
                     </div>
+
+                    <!-- Genre Filter -->
+                    <div class="col-sm-auto position-relative ">
+                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#genreFilter" aria-expanded="false" aria-controls="genreFilter">
+                            Genre <i class="bi bi-arrow-down-short"></i>
+                        </button>
+                        <div class="collapse mt-2 position-absolute mt-2 z-3" id="genreFilter">
+                            <div class="card card-body" style="width:max-content">
+                                <div>
+                                    <input class="form-check-input" type="checkbox" value="" id="checkDefault">
+                                    <label class="form-check-label fs-6" for="checkDefault">
+                                        Action
+                                    </label>
+
+                                </div>
+                                <div>
+                                    <input class="form-check-input" type="checkbox" value="" id="checkDefault">
+                                    <label class="form-check-label fs-6" for="checkDefault">
+                                        Adventure
+                                    </label>
+
+                                </div>
+                                <div>
+                                    <input class="form-check-input" type="checkbox" value="" id="checkDefault">
+                                    <label class="form-check-label fs-6" for="checkDefault">
+                                        Romance
+                                    </label>
+
+                                </div>
+
+                                <div>
+                                    <input class="form-check-input" type="checkbox" value="" id="checkDefault">
+                                    <label class="form-check-label fs-6" for="checkDefault">
+                                        Sci-Fi
+                                    </label>
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
+                    <!-- Year Filter -->
+                    <div class="col-sm-auto position-relative">
+                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#yearFilter" aria-expanded="false" aria-controls="yearFilter">
+                            Year <i class="bi bi-arrow-down-short"></i>
+                        </button>
+                        <div class="collapse mt-2 position-absolute mt-2 z-3" id="yearFilter">
+                            <div class="card card-body" style="width: max-content">
+                                <div>
+                                    <input class="form-check-input" type="checkbox" value="" id="checkDefault">
+                                    <label class="form-check-label fs-6" for="checkDefault">
+                                        2020's
+                                    </label>
+
+                                </div>
+                                <div>
+                                    <input class="form-check-input justify-content-center" type="checkbox" value="" id="checkDefault">
+                                    <label class="form-check-label fs-6" for="checkDefault">
+                                        2000's'
+                                    </label>
+
+                                </div>
+                                <div>
+                                    <input class="form-check-input" type="checkbox" value="" id="checkDefault">
+                                    <label class="form-check-label fs-6" for="checkDefault">
+                                        1980's
+                                    </label>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rating Filter -->
+                    <div class="col-sm-auto position-relative">
+                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#ratingFilter" aria-expanded="false" aria-controls="ratingFilter">
+                            Rating <i class="bi bi-arrow-down-short"></i>
+                        </button>
+                        <div class="collapse mt-2 position-absolute mt-2 z- w-100" id="ratingFilter">
+                            <div class="card card-body flex-nowrap " style="width: max-content">
+                                <div>
+                                    <input class="form-check-input" type="checkbox" value="" id="checkDefault">
+                                    <label class="form-check-label fs-6" for="checkDefault">
+                                        Loved
+                                    </label>
+
+                                </div>
+
+                                <div>
+                                    <input class="form-check-input" type="checkbox" value="" id="checkDefault">
+                                    <label class="form-check-label fs-6" for="checkDefault">
+                                        Enjoyed
+                                    </label>
+
+                                </div>
+                                <div>
+                                    <input class="form-check-input" type="checkbox" value="" id="checkDefault">
+                                    <label class="form-check-label fs-6" for="checkDefault">
+                                        Decent
+                                    </label>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Language Filter -->
+                    <div class="col-sm-auto position-relative">
+                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#languageFilter" aria-expanded="false" aria-controls="languageFilter">
+                            Language <i class="bi bi-arrow-down-short"></i>
+                        </button>
+                        <div class="collapse mt-2 position-absolute mt-2 z-3" id="languageFilter">
+                            <div class="card card-body">
+                                <div>
+                                    <input class="form-check-input" type="checkbox" value="" id="checkDefault">
+                                    <label class="form-check-label" for="checkDefault">
+                                        English
+                                    </label>
+                                </div>
+                                <div>
+                                <input class="form-check-input" type="checkbox" value="" id="checkDefault">
+                                <label class="form-check-label" for="checkDefault">
+                                    Spanish
+                                </label>
+
+                                </div>
+                                <div>
+                                    <input class="form-check-input" type="checkbox" value="" id="checkDefault">
+                                    <label class="form-check-label" for="checkDefault">
+                                        German
+                                    </label>
+
+                                </div>
+                                <div>
+                                    <input class="form-check-input" type="checkbox" value="" id="checkDefault">
+                                    <label class="form-check-label" for="checkDefault">
+                                        Dutch
+                                    </label>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
                 </div>
-            
-            
+            </div>
         </div>
-
-
     </form>
 
 </main>
-
-@section Scripts{
-
-}
