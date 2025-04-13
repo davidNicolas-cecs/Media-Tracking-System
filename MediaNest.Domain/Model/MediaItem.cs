@@ -18,7 +18,7 @@ namespace MediaNest.Domain.Model
 
         public int Year { get; set; }
 
-        public int Language { get; set; }
+        public required string Language { get; set; }
 
         public required string[] Genres { get; set; }
 

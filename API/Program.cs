@@ -1,7 +1,9 @@
+using API;
 using API.Data;
 using MediaNest.Application.UseCases.MediaItem;
 using MediaNest.Application.UseCases.MediaManagment;
 using MediaNest.Infrastructure.Data;
+using MediaNest.Infrastructure.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -43,6 +45,7 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+app.UseMiddleware<ErrorHandling>();
 app.MapRazorPages()
    .WithStaticAssets();
 app.MapStaticAssets();
@@ -56,7 +59,7 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
-
+// Create an admin user on start
 using (var scope = app.Services.CreateScope())
 {
     var roleManger = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();

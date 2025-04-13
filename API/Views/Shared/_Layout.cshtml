@@ -34,12 +34,12 @@
                                 <a class="nav-link text-white" asp-area="" asp-controller="Search" asp-action="Index">Search</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white">My Collection</a>
+                                <a class="nav-link text-white" >My Collection</a>
                             </li>
                         }else if(User.IsInRole("Admin"))
                         {
                         <li class="nav-item">
-                            <a class="nav-link text-white">Media Items</a>
+                                <a class="nav-link text-white" asp-area="" asp-controller="MediaItems" asp-action="Index">Media Items</a>
                         </li>
                         }
 
