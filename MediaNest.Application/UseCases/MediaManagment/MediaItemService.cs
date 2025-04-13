@@ -46,5 +46,12 @@ namespace MediaNest.Application.UseCases.MediaManagment
         {
             return _mediaItemRepository.Exists(id);
         }
+
+        public async Task<List<Domain.Model.MediaItem>> SearchMediaItems(Domain.Model.MediaItemSearchRequest request)
+        {
+            // get list of items
+            var mediaItems = await _mediaItemRepository.GetAllMediaItemsAsync();
+            return mediaItems.Where(i => i.Title.Contains(request.SearchText, StringComparison.OrdinalIgnoreCase)).ToList();
+        }
     }
 }

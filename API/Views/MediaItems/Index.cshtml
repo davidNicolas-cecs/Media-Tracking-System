@@ -62,10 +62,10 @@
                 @Html.DisplayFor(modelItem => item.Language)
             </td>
             <td>
-               @foreach (var genre in item.Genres)
-    {
-        <span class="badge bg-secondary me-1">@genre</span>
-    }
+                    @foreach (var genre in item.Genres)
+                    {
+                        <span class="badge bg-secondary me-1">@genre</span>
+                    }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Rating)

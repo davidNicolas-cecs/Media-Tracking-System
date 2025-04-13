@@ -1,0 +1,13 @@
+﻿@model List<MediaItem>
+@foreach (var item in Model)
+{
+    <div class="card mb-2">
+        <div class="card-body">
+            <h5>@item.Title</h5>
+            @foreach (var genre in item.Genres)
+            {
+                <p class="badge bg-primary">@genre</p>
+            }
+        </div>
+    </div>
+}

@@ -10,8 +10,4 @@
     <ProjectReference Include="..\MediaNest.Domain\MediaNest.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="UseCases\Search\" />
-  </ItemGroup>
-
 </Project>
