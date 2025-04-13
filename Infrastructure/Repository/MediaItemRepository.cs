@@ -49,12 +49,10 @@ namespace MediaNest.Infrastructure.Repository
         {
             _context.MediaItems.Update(mediaItem);
             await _context.SaveChangesAsync();
-
         }
         public Boolean Exists(int id)
         {
             return _context.MediaItems.Any(e => e.Id == id);
-
         }
 
     }

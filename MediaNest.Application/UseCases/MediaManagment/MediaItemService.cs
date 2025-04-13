@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MediaNest.Application.UseCases.MediaManagment
 {
-      // Implements Additional business logic to the DB interactions. This holds the db related info that controller refrences, so here we add business logic
+    // Implements Additional business logic to the DB interactions. This holds the db related info that controller refrences, so here we add business logic
     public class MediaItemService
     {
         private readonly IMediaItemRepository _mediaItemRepository;
@@ -16,7 +16,6 @@ namespace MediaNest.Application.UseCases.MediaManagment
         {
             _mediaItemRepository = mediaItemRepository;
         }
-
         public async Task<List<Domain.Model.MediaItem>> GetMediaItemsAsync()
         {
             return await _mediaItemRepository.GetAllMediaItemsAsync();
@@ -46,10 +45,11 @@ namespace MediaNest.Application.UseCases.MediaManagment
         {
             return _mediaItemRepository.Exists(id);
         }
-
+        // Not in Repostiroy / Interface because it has specific business logic
         public async Task<List<Domain.Model.MediaItem>> SearchMediaItems(Domain.Model.MediaItemSearchRequest request)
         {
             // get list of items
+            //TODO: Add filters to search
             var mediaItems = await _mediaItemRepository.GetAllMediaItemsAsync();
             return mediaItems.Where(i => i.Title.Contains(request.SearchText, StringComparison.OrdinalIgnoreCase)).ToList();
         }
