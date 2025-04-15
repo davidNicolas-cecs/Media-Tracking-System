@@ -1,0 +1,96 @@
+﻿@model MediaNest.Domain.Model.MediaItem
+
+@{
+	ViewData["Title"] = "Details";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+<div>
+	<h4>MediaItem</h4>
+	<hr />
+	<div class="row g-4">
+		<div class="col-12 col-md-4">
+			<img src="https://placehold.co/300x400" class="img-fluid w-100" alt="...">
+		</div>
+		<div class="col-12 col-md-8">
+			<dl class="row">
+				<dt class="col-sm-4">
+					@Html.DisplayNameFor(model => model.ISBN)
+				</dt>
+				<dd class="col-sm-8">
+					@Html.DisplayFor(model => model.ISBN)
+				</dd>
+				<dt class="col-sm-4">
+					@Html.DisplayNameFor(model => model.Title)
+				</dt>
+				<dd class="col-sm-8">
+					@Html.DisplayFor(model => model.Title)
+				</dd>
+				<dt class="col-sm-4">
+					@Html.DisplayNameFor(model => model.Description)
+				</dt>
+				<dd class="col-sm-8">
+					@Html.DisplayFor(model => model.Description)
+				</dd>
+				<dt class="col-sm-4">
+					@Html.DisplayNameFor(model => model.Type)
+				</dt>
+				<dd class="col-sm-8">
+					@Html.DisplayFor(model => model.Type)
+				</dd>
+				<dt class="col-sm-4">
+					@Html.DisplayNameFor(model => model.Year)
+				</dt>
+				<dd class="col-sm-8">
+					@Html.DisplayFor(model => model.Year)
+				</dd>
+				<dt class="col-sm-4">
+					@Html.DisplayNameFor(model => model.Language)
+				</dt>
+				<dd class="col-sm-8">
+					@Html.DisplayFor(model => model.Language)
+				</dd>
+				<dt class="col-sm-4">
+					@Html.DisplayNameFor(model => model.Genres)
+				</dt>
+				<dd class="col-sm-8">
+
+					@foreach (var genre in Model.Genres)
+					{
+						<span class="badge bg-info fs-6">@genre </span>
+					}
+				</dd>
+				<dt class="col-sm-4">
+					@Html.DisplayNameFor(model => model.Rating)
+				</dt>
+				<dd class="col-sm-8">
+					@Html.DisplayFor(model => model.Rating)
+				</dd>
+			</dl>
+
+			<a class="btn btn-primary col-12 col-lg-2" id="addToCollection" >Add to List</a>
+		</div>
+
+	</div>
+</div>
+
+<div class="mt-4">
+	<a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+	<a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+	<script>
+		document.getElementById("addToCollection").addEventListener("click",async () => {
+			console.log('clicked', @Model.Id)
+			const response = await fetch("/MyCollection/AddToCollection",{
+				method: "POST",
+				headers: {
+						"Content-Type": "application/json"
+				},
+				body: JSON.stringify( @Model.Id  )
+			});
+		})
+	</script>
+}
