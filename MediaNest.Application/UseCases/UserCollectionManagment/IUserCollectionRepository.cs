@@ -9,5 +9,8 @@ namespace MediaNest.Application.UseCases.UserCollectionManagment
     public interface IUserCollectionRepository
     {
         Task <List<Domain.Model.UserCollectionItems>> GetAllUserMediaItems(string userId);
+
+        Task AddToCollection(int mediaItemId);
+
     }
 }

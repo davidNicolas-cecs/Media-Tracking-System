@@ -1,5 +1,8 @@
-﻿@model MediaNest.Domain.Model.MediaItem
-
+﻿@using MediaNest.Infrastructure.Data
+@using Microsoft.AspNetCore.Identity
+@model MediaNest.Domain.Model.MediaItem
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 @{
 	ViewData["Title"] = "Details";
 	Layout = "~/Views/Shared/_Layout.cshtml";
@@ -83,7 +86,9 @@
 @section Scripts {
 	<script>
 		document.getElementById("addToCollection").addEventListener("click",async () => {
-			console.log('clicked', @Model.Id)
+			const userId = "@UserManager.GetUserId(User)";
+
+			console.log('clicked', @Model.Id,userId)
 			const response = await fetch("/MyCollection/AddToCollection",{
 				method: "POST",
 				headers: {

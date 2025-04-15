@@ -60,7 +60,7 @@ namespace API.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("MediaItems");
+                    b.ToTable("MediaItems", (string)null);
                 });
 
             modelBuilder.Entity("MediaNest.Domain.Model.UserCollection", b =>
@@ -77,7 +77,7 @@ namespace API.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("UserCollections");
+                    b.ToTable("UserCollections", (string)null);
                 });
 
             modelBuilder.Entity("MediaNest.Domain.Model.UserCollectionItems", b =>
@@ -107,7 +107,7 @@ namespace API.Data.Migrations
 
                     b.HasIndex("UserCollectionId");
 
-                    b.ToTable("UserCollectionItems");
+                    b.ToTable("UserCollectionItems", (string)null);
                 });
 
             modelBuilder.Entity("MediaNest.Infrastructure.Data.ApplicationUser", b =>

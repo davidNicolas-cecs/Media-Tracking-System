@@ -1,6 +1,7 @@
 ﻿using MediaNest.Domain.Model;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Emit;
 
 namespace MediaNest.Infrastructure.Data
 {
@@ -36,6 +37,7 @@ namespace MediaNest.Infrastructure.Data
 
             // makes enum string instead of value
             builder.Entity<UserCollectionItems>().Property(ucollection => ucollection.Progress).HasConversion<string>();
+            builder.Entity<UserCollectionItems>().Property(u => u.Progress).HasDefaultValue(Progress.NotStarted);
         }
         public DbSet<MediaItem> MediaItems { get; set; }
         public DbSet<UserCollection> UserCollections { get; set; }

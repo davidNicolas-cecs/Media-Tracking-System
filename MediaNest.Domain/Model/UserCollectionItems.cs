@@ -17,7 +17,7 @@ namespace MediaNest.Domain.Model
         public MediaItem MediaItem { get; set; }
 
         public Progress Progress { get; set; }
-        public int Rating { get; set; }
+        public int? Rating { get; set; }
     }
 }
 

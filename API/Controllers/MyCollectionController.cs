@@ -24,7 +24,7 @@ namespace API.Controllers
         {
             if (ModelState.IsValid)
             {
-                var items = await _userCollectionService.GetAllUserMediaItems("0");
+                var items = await _userCollectionService.GetAllUserMediaItems("1");
                 Console.WriteLine(items);
             }
             
