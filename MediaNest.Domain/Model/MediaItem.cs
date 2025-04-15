@@ -22,6 +22,10 @@ namespace MediaNest.Domain.Model
 
         public required string[] Genres { get; set; }
 
-        public required string Rating { get; set; }
+        public string? Rating { get; set; }
+
+        // Media Item can be in many users collections one to many relationship
+        public ICollection<UserCollectionItems> InCollections { get; set; }
+
     }
 }

@@ -1,10 +1,14 @@
 ﻿@model API.ViewModels.SearchPageViewModel
+
+@{
+    ViewData["Title"] = "Search";
+}
 <main class="container d-flex flex-column">
 
     <form id="searchForm">
         <div class="d-flex flex-column">
             <label asp-for="SearchRequest.SearchText" class="mb-2">Search</label>
-            <input asp-for="SearchRequest.SearchText" name="SearchText" class="form-control mb-3" type="text" />
+            <input asp-for="SearchRequest.SearchText" autocomplete="off" name="SearchText" class="form-control mb-3" type="text" />
 
             <div class="flex-row card card-body p-2">
                 <div class="flex-row d-flex flex-wrap gap-2 justify-content-lg-end">
@@ -203,29 +207,47 @@
 
 </main>
 @section Scripts {
+    <script>
+        // Restore previous search if exists
+        window.addEventListener("DOMContentLoaded", async () => {
+            const saved = sessionStorage.getItem('lastSearch');
+            if (saved) {
+                const response = await fetch("/Search/SearchMediaItem", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ SearchText: saved })
+                });
 
-<script>
-    document.getElementById("searchForm").addEventListener("submit", async function(e) {
-        e.preventDefault();
+                const html = await response.text();
+                document.getElementById("searchResults").innerHTML = html;
 
-        const formData = new FormData(this);
-        const data = Object.fromEntries(formData.entries());
-        console.log(data)
-         const response = await fetch("/Search/SearchMediaItem", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-    });
-       //we get a partial view so we expect html 
-        const html = await response.text();
-        document.getElementById("searchResults").innerHTML = html;
+                // Also restore the input field
+                document.querySelector("input[name='SearchText']").value = saved;
+            }
+        });
 
+        // Handle form submission
+        document.getElementById("searchForm").addEventListener("submit", async function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
 
-        
- 
+            // Save to session storage
+            sessionStorage.setItem('lastSearch', data.SearchText);
 
-    });
-</script>
+            const response = await fetch("/Search/SearchMediaItem", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            });
+
+            const html = await response.text();
+            document.getElementById("searchResults").innerHTML = html;
+        });
+    </script>
 }
+

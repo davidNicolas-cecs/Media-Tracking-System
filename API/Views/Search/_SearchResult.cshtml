@@ -6,15 +6,16 @@
 }
 @foreach (var item in Model)
 {
+	<a asp-action="Details" asp-controller="Search" asp-route-id="@item.Id">
 	<div class="card mb-2 mt-4 col-sm-2" style="width: 15rem; ">
 		<img src="https://placehold.co/90x100" class="card-img-top" alt="...">
 		<div class="card-body">
 			<div class="d-flex flex-column">
-				<h4 class="" style="">@item.Title</h4>
+				<h4 class="text-truncate-ellipsis" style="">@item.Title</h4>
 				<div>
 
 
-					<div>
+					<div class="mb-2">
 						@switch (item.Rating)
 						{
 							case "0":
@@ -68,11 +69,30 @@
 					</div>
 					<div style="margin-top:-10px">
 						<p class="badge bg-info">@item.Type</p>
-
 					</div>
 
 				</div>
 			</div>
 		</div>
 	</div>
+	</a>
 }
+
+<style>
+	a {
+		text-decoration: none !important;
+		color: inherit;
+		display: block;
+		margin: 0;
+		padding: 0;
+		line-height: normal;
+	}
+
+	
+
+	.text-truncate-ellipsis {
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+</style>

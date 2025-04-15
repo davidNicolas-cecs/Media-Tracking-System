@@ -1,0 +1,72 @@
+﻿// Use DBML to define your database structure
+// Docs: https://dbml.dbdiagram.io/docs
+
+Table users {
+  id integer [primary key]
+  username varchar
+  role varchar
+  created_at timestamp
+  user_collection_id integer [not null, unique]
+}
+
+Table user_collection {
+  id integer [primary key]
+}
+
+Table user_collection_items {
+  id integer [primary key]
+  user_collection_id integer [not null]
+  media_item_id integer [not null]
+  progress varchar
+  rating integer
+}
+
+Table media_item {
+  id integer [primary key]
+  title varchar
+  type varchar
+  langauge varchar
+  genre varchar[]
+}
+
+Table discussion {
+  id integer [primary key]
+  title varchar
+  media_item_id integer [not null]
+  created_at timestamp
+}
+
+Table comments {
+  id integer [primary key]
+  discussion_id integer [not null]
+  oc_user_id integer [not null]
+  comment varchar
+  created_at timestamp
+  likes integer
+  dislikes integer
+}
+
+Table replies {
+  id integer [primary key]
+  comment_id integer [not null]
+  reply varchar [note: 'reply to comment']
+  created_at date
+  replier_user_id integer [not null, note: 'user replying to original comment']
+  likes integer
+  dislikes integer
+}
+
+// Relationships
+
+Ref: users.user_collection_id > user_collection.id
+
+Ref: user_collection_items.user_collection_id > user_collection.id
+Ref: user_collection_items.media_item_id > media_item.id
+
+Ref: discussion.media_item_id > media_item.id
+
+Ref: comments.discussion_id > discussion.id
+Ref: comments.oc_user_id > users.id
+
+Ref: replies.comment_id > comments.id
+Ref: replies.replier_user_id > users.id

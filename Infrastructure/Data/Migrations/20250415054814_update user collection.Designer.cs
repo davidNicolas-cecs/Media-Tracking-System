@@ -4,6 +4,7 @@ using MediaNest.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250415054814_update user collection")]
+    partial class updateusercollection
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -91,6 +94,9 @@ namespace API.Data.Migrations
                     b.Property<int>("MediaItemId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("MediaItemId1")
+                        .HasColumnType("int");
+
                     b.Property<string>("Progress")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -101,11 +107,18 @@ namespace API.Data.Migrations
                     b.Property<int>("UserCollectionId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("UserCollectionId1")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("MediaItemId");
 
+                    b.HasIndex("MediaItemId1");
+
                     b.HasIndex("UserCollectionId");
+
+                    b.HasIndex("UserCollectionId1");
 
                     b.ToTable("UserCollectionItems");
                 });
@@ -322,16 +335,24 @@ namespace API.Data.Migrations
             modelBuilder.Entity("MediaNest.Domain.Model.UserCollectionItems", b =>
                 {
                     b.HasOne("MediaNest.Domain.Model.MediaItem", "MediaItem")
-                        .WithMany("InCollections")
+                        .WithMany()
                         .HasForeignKey("MediaItemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("MediaNest.Domain.Model.MediaItem", null)
+                        .WithMany("InCollections")
+                        .HasForeignKey("MediaItemId1");
+
                     b.HasOne("MediaNest.Domain.Model.UserCollection", "UserCollection")
-                        .WithMany("Items")
+                        .WithMany()
                         .HasForeignKey("UserCollectionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("MediaNest.Domain.Model.UserCollection", null)
+                        .WithMany("Items")
+                        .HasForeignKey("UserCollectionId1");
 
                     b.Navigation("MediaItem");
 

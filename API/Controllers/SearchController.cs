@@ -43,5 +43,16 @@ namespace API.Controllers
             var results = await _mediaItemService.SearchMediaItems(request);
             return PartialView("_SearchResult", results);
         }
+
+        // Show details + the option for user to add to list 
+        public async Task<IActionResult> Details(int? Id)
+        {
+            if (Id == null)
+            {
+                return BadRequest("No Id Found");
+            }
+            var mediaItem = await _mediaItemService.GetMediaItemById((int)Id);
+            return View(mediaItem);
+        }
     }
 }

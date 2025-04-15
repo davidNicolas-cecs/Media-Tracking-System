@@ -2,6 +2,7 @@ using API;
 using API.Data;
 using MediaNest.Application.UseCases.MediaItem;
 using MediaNest.Application.UseCases.MediaManagment;
+using MediaNest.Application.UseCases.UserCollectionManagment;
 using MediaNest.Infrastructure.Data;
 using MediaNest.Infrastructure.Repository;
 using Microsoft.AspNetCore.Authorization;
@@ -23,7 +24,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IMediaItemRepository,MediaItemRepository>();
 builder.Services.AddScoped<MediaItemService>();
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
+builder.Services.AddScoped<IUserCollectionRepository, UserCollectionRepository>();
+builder.Services.AddScoped<IUserCollectionService, UserCollectionService>();
+// Add ApplicationUser bceause it extends the base class identity
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
@@ -76,7 +80,7 @@ using (var scope = app.Services.CreateScope())
 
 using (var scope = app.Services.CreateScope())
 {
-    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
     string email = "admin@gmail.com";
     string password = "Test1234,";
     if (await userManager.FindByEmailAsync(email) == null)
@@ -87,9 +91,9 @@ using (var scope = app.Services.CreateScope())
             Email = email
         };
 
-        await userManager.CreateAsync(user, password);
+        await userManager.CreateAsync((ApplicationUser)user, password);
 
-        await userManager.AddToRoleAsync(user, "Admin");
+        await userManager.AddToRoleAsync((ApplicationUser)user, "Admin");
     }
   
 }

@@ -4,6 +4,7 @@ using MediaNest.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250414053159_user collection")]
+    partial class usercollection
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,6 +48,7 @@ namespace API.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Rating")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
@@ -71,23 +75,6 @@ namespace API.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("UserId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("UserCollections");
-                });
-
-            modelBuilder.Entity("MediaNest.Domain.Model.UserCollectionItems", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
                     b.Property<int>("MediaItemId")
                         .HasColumnType("int");
 
@@ -95,19 +82,17 @@ namespace API.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Rating")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserCollectionId")
-                        .HasColumnType("int");
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("MediaItemId");
 
-                    b.HasIndex("UserCollectionId");
+                    b.HasIndex("UserId");
 
-                    b.ToTable("UserCollectionItems");
+                    b.ToTable("UserCollections");
                 });
 
             modelBuilder.Entity("MediaNest.Infrastructure.Data.ApplicationUser", b =>
@@ -158,9 +143,6 @@ namespace API.Data.Migrations
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("UserCollectionId")
-                        .HasColumnType("int");
-
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -174,10 +156,6 @@ namespace API.Data.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.HasIndex("UserCollectionId")
-                        .IsUnique()
-                        .HasFilter("[UserCollectionId] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
                 });
@@ -319,32 +297,21 @@ namespace API.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("MediaNest.Domain.Model.UserCollectionItems", b =>
+            modelBuilder.Entity("MediaNest.Domain.Model.UserCollection", b =>
                 {
                     b.HasOne("MediaNest.Domain.Model.MediaItem", "MediaItem")
-                        .WithMany("InCollections")
+                        .WithMany("UserCollections")
                         .HasForeignKey("MediaItemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MediaNest.Domain.Model.UserCollection", "UserCollection")
-                        .WithMany("Items")
-                        .HasForeignKey("UserCollectionId")
+                    b.HasOne("MediaNest.Infrastructure.Data.ApplicationUser", null)
+                        .WithMany("UserCollections")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("MediaItem");
-
-                    b.Navigation("UserCollection");
-                });
-
-            modelBuilder.Entity("MediaNest.Infrastructure.Data.ApplicationUser", b =>
-                {
-                    b.HasOne("MediaNest.Domain.Model.UserCollection", "UserCollection")
-                        .WithOne()
-                        .HasForeignKey("MediaNest.Infrastructure.Data.ApplicationUser", "UserCollectionId");
-
-                    b.Navigation("UserCollection");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -400,12 +367,12 @@ namespace API.Data.Migrations
 
             modelBuilder.Entity("MediaNest.Domain.Model.MediaItem", b =>
                 {
-                    b.Navigation("InCollections");
+                    b.Navigation("UserCollections");
                 });
 
-            modelBuilder.Entity("MediaNest.Domain.Model.UserCollection", b =>
+            modelBuilder.Entity("MediaNest.Infrastructure.Data.ApplicationUser", b =>
                 {
-                    b.Navigation("Items");
+                    b.Navigation("UserCollections");
                 });
 #pragma warning restore 612, 618
         }
