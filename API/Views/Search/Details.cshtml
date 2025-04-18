@@ -79,7 +79,6 @@
 </div>
 
 <div class="mt-4">
-	<a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
 	<a asp-action="Index">Back to List</a>
 </div>
 
@@ -87,8 +86,9 @@
 	<script>
 		document.getElementById("addToCollection").addEventListener("click",async () => {
 			const userId = "@UserManager.GetUserId(User)";
+			const moreInfo = "@User"
 
-			console.log('clicked', @Model.Id,userId)
+			console.log('clicked', @Model.Id, moreInfo);
 			const response = await fetch("/MyCollection/AddToCollection",{
 				method: "POST",
 				headers: {

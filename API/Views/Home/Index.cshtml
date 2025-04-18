@@ -1,153 +1,145 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Home Page";
 }
 
-<main class="container d-flex flex-column gap-5">
-
+<main class="container">
     <!-- Hero section -->
-  
-
-    <section class="d-flex flex-column mt-5 gap-5 mb-3">
-        <div class="d-flex  flex-column col-lg-9 gap-4">
-            <h1>Track What You Watch, Read, and Love.</h1>
-            <h5>Keep your books, movies, and anime in one organized hub.</h5>
-            <p>Search for any movie, book, or anime, add it to your list, and once finished, add a review and your thoughts about it! </p>
-            <a href="@Url.ActionLink("Index", "Search")" class="btn btn-primary w-50 ">Search</a>
+    <section class="d-flex flex-column align-items-center text-center py-5 mt-5 bg-primary" style="border-radius: 15px;">
+        <div class="col-lg-8">
+            <h1 class="display-4 fw-bold mb-4">Track What You Watch, Read, and Love.</h1>
+            <h5 class="text-secondary mb-4">Keep your books, movies, and anime in one organized hub.</h5>
+            <p class="lead mb-5">Search for any movie, book, or anime, add it to your list, and once finished, add a review and share your thoughts!</p>
+            <a href="@Url.ActionLink("Index", "Search")" class="btn btn-secondary btn-lg px-5 py-3 fw-bold" style="">Start Searching</a>
         </div>
-     
     </section>
+   
 
-    <section class="d-flex flex-column text-center gap-4 mb-4 mt-5">
-        <h1>Feature Overview</h1>
-
-        <table class="table table-hover table-striped ">
-            <tbody class="">
-                <tr>
-                    <td>
-                        <h4>
-
-                        📚
-                        </h4>
-                    </td>
-                    <td>
-                        <h4>Universal Library</h4>
-                    </td>
-                    <td>
-                        <h4>
-                        Track books, movies & anime in one place
-
-                        </h4>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <h4>
-                        ⭐
-
-                        </h4>
-                    </td>
-                    <td>
-                        <h4>
-
-                        Ratings & Reviews
-                        </h4>
-                    </td>
-                    <td>
-                        <h4>
-                        Rate and comment on each media
-
-                        </h4>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <h4>
-                        📈
-
-                        </h4>
-                    </td>
-                    <td>
-                        <h4>
-                        Progress Tracking
-
-                        </h4>
-                    </td>
-                    <td>
-                        <h3>
-                        Mark titles as “Plan to Watch”, “Watching”, or “Finished”
-                        </h3>   
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <h4>
-                        🔍
-                        </h4>
-                    </td>
-                    <td>
-                        <h4>
-                        Global Search
-
-                        </h4>
-                    </td>
-                    <td>
-                        <h4>
-                        Look up media from public APIs
-
-                        </h4>
-                    </td>
-                </tr> 
-                <tr>
-                    <td>
-                        <h4>
-                        🧾
-
-                        </h4>
-                    </td>
-                    <td>
-                        <h4>
-                        Personal Lists
-
-                        </h4>
-                    </td>
-                    <td>
-                        <h4>
-                        Build your own lists
-
-                        </h4>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
-    </section>
-
-    <section class="flex-column mt-3 mb-3">
-        <h1 class="text-center mb-4">
-            Your media journey at a glance
-        </h1>
-    <div id="carouselExample" class="carousel slide">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                    <img src="https://placehold.co/600x400" class="d-block w-100" alt="...">
+    <!-- Features section -->
+    <section class="my-5 py-5">
+        <h2 class="text-center fw-bold mb-5">Everything You Need in One Place</h2>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+            <div class="col">
+                <div class="card h-100 border-0 shadow-sm" style="transition: transform 0.3s ease;">
+                    <div class="card-body text-center p-4">
+                        <div class="rounded-circle bg-primary bg-opacity-10 mb-3 mx-auto d-flex align-items-center justify-content-center"
+                             style="width: 60px; height: 60px;">
+                            <i class="bi bi-book-half text-primary fs-4"></i>
+                        </div>
+                        <h5 class="card-title fw-bold">Universal Library</h5>
+                        <p class="card-text text-muted">Access movies, books, and anime from a comprehensive database all in one place.</p>
+                    </div>
+                </div>
             </div>
-            <div class="carousel-item">
-                    <img src="https://placehold.co/600x400" class="d-block w-100" alt="...">
+            <div class="col">
+                <div class="card h-100 border-0 shadow-sm" style="transition: transform 0.3s ease;">
+                    <div class="card-body text-center p-4">
+                        <div class="rounded-circle bg-warning bg-opacity-10 mb-3 mx-auto d-flex align-items-center justify-content-center"
+                             style="width: 60px; height: 60px;">
+                            <i class="bi bi-star-fill text-warning fs-4"></i>
+                        </div>
+                        <h5 class="card-title fw-bold">Rating & Review</h5>
+                        <p class="card-text text-muted">Share your opinions and read what others think about your favorite media.</p>
+                    </div>
+                </div>
             </div>
-            <div class="carousel-item">
-                    <img src="https://placehold.co/600x400" class="d-block w-100" alt="...">
+            <div class="col">
+                <div class="card h-100 border-0 shadow-sm" style="transition: transform 0.3s ease;">
+                    <div class="card-body text-center p-4">
+                        <div class="rounded-circle bg-success bg-opacity-10 mb-3 mx-auto d-flex align-items-center justify-content-center"
+                             style="width: 60px; height: 60px;">
+                            <i class="bi bi-graph-up text-success fs-4"></i>
+                        </div>
+                        <h5 class="card-title fw-bold">Progress Tracking</h5>
+                        <p class="card-text text-muted">Keep track of your reading progress and watch history effortlessly.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100 border-0 shadow-sm" style="transition: transform 0.3s ease;">
+                    <div class="card-body text-center p-4">
+                        <div class="rounded-circle bg-info bg-opacity-10 mb-3 mx-auto d-flex align-items-center justify-content-center"
+                             style="width: 60px; height: 60px;">
+                            <i class="bi bi-search text-info fs-4"></i>
+                        </div>
+                        <h5 class="card-title fw-bold">Global Search</h5>
+                        <p class="card-text text-muted">Find exactly what you're looking for with our powerful search feature.</p>
+                    </div>
+                </div>
             </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
     </section>
 
+    <!-- Gallery section -->
+    <section class="mb-5 pb-5">
+        <h2 class="text-center fw-bold mb-5">Your Media Journey at a Glance</h2>
+        <div id="carouselExample" class="carousel slide shadow-lg rounded-3" style="overflow: hidden;">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="0" class="active" aria-current="true"></button>
+                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="1"></button>
+                <button type="button" data-bs-target="#carouselExample" data-bs-slide-to="2"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="https://placehold.co/1200x600?text=Track+Your+Progress" class="d-block w-100" alt="Track Your Progress">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5 class="fw-bold">Track Your Progress</h5>
+                        <p>Never lose track of where you left off in your favorite series.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://placehold.co/1200x600?text=Write+Reviews" class="d-block w-100" alt="Write Reviews">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5 class="fw-bold">Share Your Thoughts</h5>
+                        <p>Write detailed reviews and rate everything you've watched or read.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://placehold.co/1200x600?text=Discover+Media" class="d-block w-100" alt="Discover Media">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5 class="fw-bold">Discover New Media</h5>
+                        <p>Find your next favorite book, movie, or anime.</p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </section>
+
+    <!-- Call to action section -->
+    <section class="py-5 mb-5 text-center rounded-3 bg-primary" style="">
+        <div class="col-lg-6 mx-auto">
+            <h2 class="display-6 fw-bold mb-4">Ready to Start Your Journey?</h2>
+            <p class="lead mb-4">Join thousands of users who are already tracking their media experiences.</p>
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                <a href="@Url.ActionLink("Index", "Search")" class="btn btn-success btn-lg px-4 gap-3">Get Started</a>
+                <a href="#" class="btn btn-secondary btn-lg px-4">Learn More</a>
+            </div>
+        </div>
+    </section>
 </main>
+
+<style>
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+    }
+
+    .carousel-caption {
+        background: rgba(0,0,0,0.5);
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .carousel-indicators button {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+    }
+</style>

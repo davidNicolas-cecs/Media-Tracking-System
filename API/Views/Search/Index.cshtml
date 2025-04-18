@@ -3,209 +3,308 @@
 @{
     ViewData["Title"] = "Search";
 }
-<main class="container d-flex flex-column">
-
-    <form id="searchForm">
-        <div class="d-flex flex-column">
-            <label asp-for="SearchRequest.SearchText" class="mb-2">Search</label>
-            <input asp-for="SearchRequest.SearchText" autocomplete="off" name="SearchText" class="form-control mb-3" type="text" />
-
-            <div class="flex-row card card-body p-2">
-                <div class="flex-row d-flex flex-wrap gap-2 justify-content-lg-end">
-
-                    <!-- Type Filter -->
-                    <div class="col-sm-auto position-relative">
-                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#typeFilter" aria-expanded="false" aria-controls="typeFilter">
-                            Type <i class="bi bi-arrow-down-short"></i>
+<main class="container py-4">
+    <div class="card border-0 shadow-sm">
+        <div class="card-body p-4">
+            <form id="searchForm">
+                <div class="mb-4">
+                    <label asp-for="SearchRequest.SearchText" class="form-label h5 mb-3">Search</label>
+                    <div class="input-group">
+                        <input asp-for="SearchRequest.SearchText"
+                               autocomplete="off"
+                               name="SearchText"
+                               class="form-control form-control-lg border-2 shadow-sm"
+                               type="text"
+                               placeholder="Type to search..." />
+                        <button class="btn btn-primary btn-lg px-4" type="submit">
+                            <i class="bi bi-search"></i> Search
                         </button>
-                        <div class="collapse mt-2 position-absolute mt-2 z-3" id="typeFilter">
-                            <div class="card card-body" style="width:max-content">
-                                <div>
-                                    <input class="form-check-input" type="checkbox" value="" id="checkDefault">
-                                    <label class="form-check-label fs-6" for="checkDefault">
-                                        Movie
-                                    </label>
-
-                                </div>
-                                <div>
-                                    <input class="form-check-input" type="checkbox" value="" id="checkDefault">
-                                    <label class="form-check-label fs-6" for="checkDefault">
-                                        TV-Series
-                                    </label>
-
-                                </div>
-                                <div>
-                                    <input class="form-check-input" type="checkbox" value="" id="checkDefault">
-                                    <label class="form-check-label fs-6" for="checkDefault">
-                                        Anime
-                                    </label>
-
-                                </div>
-                                <div>
-                                    <input class="form-check-input" type="checkbox" value="" id="checkDefault">
-                                    <label class="form-check-label fs-6" for="checkDefault">
-                                        Book
-                                    </label>
-
-                                </div>
-                            </div>
-                        </div>
                     </div>
-
-                    <!-- Genre Filter -->
-                    <div class="col-sm-auto position-relative ">
-                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#genreFilter" aria-expanded="false" aria-controls="genreFilter">
-                            Genre <i class="bi bi-arrow-down-short"></i>
-                        </button>
-                        <div class="collapse mt-2 position-absolute mt-2 z-3" id="genreFilter">
-                            <div class="card card-body" style="width:max-content">
-                                <div>
-                                    <input class="form-check-input" type="checkbox" value="" id="checkDefault">
-                                    <label class="form-check-label fs-6" for="checkDefault">
-                                        Action
-                                    </label>
-
-                                </div>
-                                <div>
-                                    <input class="form-check-input" type="checkbox" value="" id="checkDefault">
-                                    <label class="form-check-label fs-6" for="checkDefault">
-                                        Adventure
-                                    </label>
-
-                                </div>
-                                <div>
-                                    <input class="form-check-input" type="checkbox" value="" id="checkDefault">
-                                    <label class="form-check-label fs-6" for="checkDefault">
-                                        Romance
-                                    </label>
-
-                                </div>
-
-                                <div>
-                                    <input class="form-check-input" type="checkbox" value="" id="checkDefault">
-                                    <label class="form-check-label fs-6" for="checkDefault">
-                                        Sci-Fi
-                                    </label>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Year Filter -->
-                    <div class="col-sm-auto position-relative">
-                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#yearFilter" aria-expanded="false" aria-controls="yearFilter">
-                            Year <i class="bi bi-arrow-down-short"></i>
-                        </button>
-                        <div class="collapse mt-2 position-absolute mt-2 z-3" id="yearFilter">
-                            <div class="card card-body" style="width: max-content">
-                                <div>
-                                    <input class="form-check-input" type="checkbox" value="" id="checkDefault">
-                                    <label class="form-check-label fs-6" for="checkDefault">
-                                        2020's
-                                    </label>
-
-                                </div>
-                                <div>
-                                    <input class="form-check-input justify-content-center" type="checkbox" value="" id="checkDefault">
-                                    <label class="form-check-label fs-6" for="checkDefault">
-                                        2000's'
-                                    </label>
-
-                                </div>
-                                <div>
-                                    <input class="form-check-input" type="checkbox" value="" id="checkDefault">
-                                    <label class="form-check-label fs-6" for="checkDefault">
-                                        1980's
-                                    </label>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Rating Filter -->
-                    <div class="col-sm-auto position-relative">
-                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#ratingFilter" aria-expanded="false" aria-controls="ratingFilter">
-                            Rating <i class="bi bi-arrow-down-short"></i>
-                        </button>
-                        <div class="collapse mt-2 position-absolute mt-2 z- w-100" id="ratingFilter">
-                            <div class="card card-body flex-nowrap " style="width: max-content">
-                                <div>
-                                    <input class="form-check-input" type="checkbox" value="" id="checkDefault">
-                                    <label class="form-check-label fs-6" for="checkDefault">
-                                        Loved
-                                    </label>
-
-                                </div>
-
-                                <div>
-                                    <input class="form-check-input" type="checkbox" value="" id="checkDefault">
-                                    <label class="form-check-label fs-6" for="checkDefault">
-                                        Enjoyed
-                                    </label>
-
-                                </div>
-                                <div>
-                                    <input class="form-check-input" type="checkbox" value="" id="checkDefault">
-                                    <label class="form-check-label fs-6" for="checkDefault">
-                                        Decent
-                                    </label>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Language Filter -->
-                    <div class="col-sm-auto position-relative">
-                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#languageFilter" aria-expanded="false" aria-controls="languageFilter">
-                            Language <i class="bi bi-arrow-down-short"></i>
-                        </button>
-                        <div class="collapse mt-2 position-absolute mt-2 z-3" id="languageFilter">
-                            <div class="card card-body">
-                                <div>
-                                    <input class="form-check-input" type="checkbox" value="" id="checkDefault">
-                                    <label class="form-check-label" for="checkDefault">
-                                        English
-                                    </label>
-                                </div>
-                                <div>
-                                <input class="form-check-input" type="checkbox" value="" id="checkDefault">
-                                <label class="form-check-label" for="checkDefault">
-                                    Spanish
-                                </label>
-
-                                </div>
-                                <div>
-                                    <input class="form-check-input" type="checkbox" value="" id="checkDefault">
-                                    <label class="form-check-label" for="checkDefault">
-                                        German
-                                    </label>
-
-                                </div>
-                                <div>
-                                    <input class="form-check-input" type="checkbox" value="" id="checkDefault">
-                                    <label class="form-check-label" for="checkDefault">
-                                        Dutch
-                                    </label>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-
                 </div>
-            </div>
+
+                <div class="border-top pt-4">
+                    <h6 class="text-muted mb-3">Filters</h6>
+                    <div class="d-flex flex-wrap gap-3">
+                        <!-- Type Filter -->
+                        <div class="position-relative">
+                            <button class="btn btn-outline-primary border-2 rounded-pill px-4"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#typeFilter"
+                                    aria-expanded="false"
+                                    aria-controls="typeFilter">
+                                <i class="bi bi-collection me-2"></i>Type
+                                <i class="bi bi-chevron-down ms-2"></i>
+                            </button>
+                            <div class="collapse position-absolute mt-2 z-3" id="typeFilter">
+                                <div class="card shadow-sm border-0 rounded-3" style="width: 220px;">
+                                    <div class="card-body p-3">
+                                        <div class="form-check form-switch mb-2">
+                                            <input class="form-check-input" type="checkbox" role="switch" value="" id="checkMovie">
+                                            <label class="form-check-label" for="checkMovie">
+                                                <i class="bi bi-film me-2"></i>Movie
+                                            </label>
+                                        </div>
+                                        <div class="form-check form-switch mb-2">
+                                            <input class="form-check-input" type="checkbox" role="switch" value="" id="checkTVSeries">
+                                            <label class="form-check-label" for="checkTVSeries">
+                                                <i class="bi bi-tv me-2"></i>TV-Series
+                                            </label>
+                                        </div>
+                                        <div class="form-check form-switch mb-2">
+                                            <input class="form-check-input" type="checkbox" role="switch" value="" id="checkAnime">
+                                            <label class="form-check-label" for="checkAnime">
+                                                <i class="bi bi-controller me-2"></i>Anime
+                                            </label>
+                                        </div>
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" role="switch" value="" id="checkBook">
+                                            <label class="form-check-label" for="checkBook">
+                                                <i class="bi bi-book me-2"></i>Book
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Genre Filter -->
+                        <div class="position-relative">
+                            <button class="btn btn-outline-primary border-2 rounded-pill px-4"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#genreFilter"
+                                    aria-expanded="false"
+                                    aria-controls="genreFilter">
+                                <i class="bi bi-tag me-2"></i>Genre
+                                <i class="bi bi-chevron-down ms-2"></i>
+                            </button>
+                            <div class="collapse position-absolute mt-2 z-3" id="genreFilter">
+                                <div class="card shadow-sm border-0 rounded-3" style="width: 220px;">
+                                    <div class="card-body p-3">
+                                        <div class="form-check form-switch mb-2">
+                                            <input class="form-check-input" type="checkbox" role="switch" value="" id="checkAction">
+                                            <label class="form-check-label" for="checkAction">
+                                                <i class="bi bi-lightning me-2"></i>Action
+                                            </label>
+                                        </div>
+                                        <div class="form-check form-switch mb-2">
+                                            <input class="form-check-input" type="checkbox" role="switch" value="" id="checkAdventure">
+                                            <label class="form-check-label" for="checkAdventure">
+                                                <i class="bi bi-compass me-2"></i>Adventure
+                                            </label>
+                                        </div>
+                                        <div class="form-check form-switch mb-2">
+                                            <input class="form-check-input" type="checkbox" role="switch" value="" id="checkRomance">
+                                            <label class="form-check-label" for="checkRomance">
+                                                <i class="bi bi-heart me-2"></i>Romance
+                                            </label>
+                                        </div>
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" role="switch" value="" id="checkSciFi">
+                                            <label class="form-check-label" for="checkSciFi">
+                                                <i class="bi bi-rocket me-2"></i>Sci-Fi
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Year Filter -->
+                        <div class="position-relative">
+                            <button class="btn btn-outline-primary border-2 rounded-pill px-4"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#yearFilter"
+                                    aria-expanded="false"
+                                    aria-controls="yearFilter">
+                                <i class="bi bi-calendar me-2"></i>Year
+                                <i class="bi bi-chevron-down ms-2"></i>
+                            </button>
+                            <div class="collapse position-absolute mt-2 z-3" id="yearFilter">
+                                <div class="card shadow-sm border-0 rounded-3" style="width: 220px;">
+                                    <div class="card-body p-3">
+                                        <div class="form-check form-switch mb-2">
+                                            <input class="form-check-input" type="checkbox" role="switch" value="" id="check2020s">
+                                            <label class="form-check-label" for="check2020s">
+                                                <i class="bi bi-calendar3 me-2"></i>2020's
+                                            </label>
+                                        </div>
+                                        <div class="form-check form-switch mb-2">
+                                            <input class="form-check-input" type="checkbox" role="switch" value="" id="check2000s">
+                                            <label class="form-check-label" for="check2000s">
+                                                <i class="bi bi-calendar3 me-2"></i>2000's
+                                            </label>
+                                        </div>
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" role="switch" value="" id="check1980s">
+                                            <label class="form-check-label" for="check1980s">
+                                                <i class="bi bi-calendar3 me-2"></i>1980's
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Rating Filter -->
+                        <div class="position-relative">
+                            <button class="btn btn-outline-primary border-2 rounded-pill px-4"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#ratingFilter"
+                                    aria-expanded="false"
+                                    aria-controls="ratingFilter">
+                                <i class="bi bi-star me-2"></i>Rating
+                                <i class="bi bi-chevron-down ms-2"></i>
+                            </button>
+                            <div class="collapse position-absolute mt-2 z-3" id="ratingFilter">
+                                <div class="card shadow-sm border-0 rounded-3" style="width: 220px;">
+                                    <div class="card-body p-3">
+                                        <div class="form-check form-switch mb-2">
+                                            <input class="form-check-input" type="checkbox" role="switch" value="" id="checkLoved">
+                                            <label class="form-check-label" for="checkLoved">
+                                                <i class="bi bi-heart-fill me-2 text-danger"></i>Loved
+                                            </label>
+                                        </div>
+                                        <div class="form-check form-switch mb-2">
+                                            <input class="form-check-input" type="checkbox" role="switch" value="" id="checkEnjoyed">
+                                            <label class="form-check-label" for="checkEnjoyed">
+                                                <i class="bi bi-emoji-smile me-2 text-success"></i>Enjoyed
+                                            </label>
+                                        </div>
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" role="switch" value="" id="checkDecent">
+                                            <label class="form-check-label" for="checkDecent">
+                                                <i class="bi bi-hand-thumbs-up me-2 text-primary"></i>Decent
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Language Filter -->
+                        <div class="position-relative">
+                            <button class="btn btn-outline-primary border-2 rounded-pill px-4"
+                                    type="button"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#languageFilter"
+                                    aria-expanded="false"
+                                    aria-controls="languageFilter">
+                                <i class="bi bi-translate me-2"></i>Language
+                                <i class="bi bi-chevron-down ms-2"></i>
+                            </button>
+                            <div class="collapse position-absolute mt-2 z-3" id="languageFilter">
+                                <div class="card shadow-sm border-0 rounded-3" style="width: 220px;">
+                                    <div class="card-body p-3">
+                                        <div class="form-check form-switch mb-2">
+                                            <input class="form-check-input" type="checkbox" role="switch" value="" id="checkEnglish">
+                                            <label class="form-check-label" for="checkEnglish">
+                                                <i class="bi bi-flag me-2"></i>English
+                                            </label>
+                                        </div>
+                                        <div class="form-check form-switch mb-2">
+                                            <input class="form-check-input" type="checkbox" role="switch" value="" id="checkSpanish">
+                                            <label class="form-check-label" for="checkSpanish">
+                                                <i class="bi bi-flag-fill me-2"></i>Spanish
+                                            </label>
+                                        </div>
+                                        <div class="form-check form-switch mb-2">
+                                            <input class="form-check-input" type="checkbox" role="switch" value="" id="checkGerman">
+                                            <label class="form-check-label" for="checkGerman">
+                                                <i class="bi bi-flag-fill me-2"></i>German
+                                            </label>
+                                        </div>
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" type="checkbox" role="switch" value="" id="checkDutch">
+                                            <label class="form-check-label" for="checkDutch">
+                                                <i class="bi bi-flag-fill me-2"></i>Dutch
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
-    </form>
+    </div>
 
-    <div id="searchResults" class="mt-4 d-flex gap-4 flex-wrap "></div>
-
-
+    <div id="searchResults" class="mt-4 d-flex gap-4 flex-wrap"></div>
 </main>
+
+<style>
+    .form-control:focus, .btn:focus {
+        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15);
+    }
+
+    .input-group:focus-within {
+        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.15);
+        border-radius: 0.5rem;
+    }
+
+    .card {
+        transition: all 0.2s ease-in-out;
+    }
+
+    .btn-outline-primary:hover {
+        background-color: rgba(13, 110, 253, 0.1);
+    }
+
+    .btn-outline-primary[aria-expanded="true"] {
+        background-color: rgba(13, 110, 253, 0.2);
+    }
+
+    .form-check-input:checked {
+        background-color: #0d6efd;
+        border-color: #0d6efd;
+    }
+
+    .form-check-input:focus {
+        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+    }
+
+    [data-bs-toggle="collapse"] .bi-chevron-down {
+        transition: transform 0.2s ease-in-out;
+    }
+
+    [data-bs-toggle="collapse"][aria-expanded="true"] .bi-chevron-down {
+        transform: rotate(180deg);
+    }
+
+    .collapse {
+        transition: all 0.3s ease-in-out;
+    }
+
+    .position-absolute {
+        top: 100%;
+        left: 0;
+    }
+
+    /* Custom scrollbar for results */
+    #searchResults::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+
+    #searchResults::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 4px;
+    }
+
+    #searchResults::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 4px;
+    }
+
+        #searchResults::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+</style>
+
 @section Scripts {
     <script>
         // Restore previous search if exists
@@ -250,4 +349,3 @@
         });
     </script>
 }
-
