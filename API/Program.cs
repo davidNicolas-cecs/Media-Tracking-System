@@ -26,6 +26,7 @@ builder.Services.AddScoped<IMediaItemRepository,MediaItemRepository>();
 builder.Services.AddScoped<MediaItemService>();
 builder.Services.AddScoped<IUserCollectionRepository, UserCollectionRepository>();
 builder.Services.AddScoped<IUserCollectionService, UserCollectionService>();
+
 // Add ApplicationUser bceause it extends the base class identity
 builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
     .AddRoles<IdentityRole>()

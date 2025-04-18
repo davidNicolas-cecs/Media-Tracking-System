@@ -14,7 +14,7 @@ namespace MediaNest.Application.UseCases.UserCollectionManagment
             _collectionRepository = collectionRepository;
         }
 
-        public async Task<List<Domain.Model.UserCollectionItems>> GetAllUserMediaItems(string userId)
+        public async Task<List<Domain.Model.UserMediaItems>> GetAllUserMediaItems(string userId)
         {
             return await _collectionRepository.GetAllUserMediaItems(userId);
         }

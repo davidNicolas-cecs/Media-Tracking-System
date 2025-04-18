@@ -19,27 +19,20 @@ namespace MediaNest.Infrastructure.Repository
             _context = context;
             //_user = user;
         }
-        public async Task<List<UserCollectionItems>> GetAllUserMediaItems(string userId)
+        public async Task<List<Domain.Model.UserMediaItems>> GetAllUserMediaItems(string userId)
         {
             return await _context.UserCollectionItems
-            .Include(uci => uci.MediaItem)
-            .Include(uci => uci.UserCollection)
-            .Where(uci => uci.UserCollection.UserId == userId)
-            .ToListAsync();
-        }
-        public async Task AddToCollection(int mediaItemId)
-        {
-            var collectionItem = new UserCollectionItems{
-                //id get created uniquly?
-                //Progress should default to NotStarted
-                // Rating should be null for now
-                // need to get the user collections id
-
-                UserCollectionId =2, //(int)_user.UserCollectionId,
-                MediaItemId = mediaItemId,
-            };
-            _context.UserCollectionItems.Add(collectionItem);
-            await _context.SaveChangesAsync();
+                    .Where(uci => uci.UserCollection.UserId == userId) // Filter by userId
+                    .Include(uci => uci.MediaItem) // Include the MediaItem
+                     .Select(uci => new UserMediaItems // Project to UserMediaItems
+                      {
+                        MediaItemId = uci.MediaItemId,  // Map MediaItemId to MediaItem in UserMediaItems
+                        Title = uci.MediaItem.Title,  // Map Title to Title in UserMediaItems
+                        Genres = uci.MediaItem.Genres, // Map Genres to Genres in UserMediaItems
+                        Rating = (int)uci.Rating,          // Include Rating
+                        Progress = uci.Progress       // Include Progress
+                     })
+                     .ToListAsync();
         }
     }
 }
