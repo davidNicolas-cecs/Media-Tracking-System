@@ -13,26 +13,27 @@ namespace MediaNest.Infrastructure.Repository
     public class UserCollectionRepository : IUserCollectionRepository
     {
         private readonly ApplicationDbContext _context;
-        //private readonly ApplicationUser _user;
         public UserCollectionRepository(ApplicationDbContext context)
         {
             _context = context;
-            //_user = user;
         }
         public async Task<List<Domain.Model.UserMediaItems>> GetAllUserMediaItems(string userId)
         {
             return await _context.UserCollectionItems
-                    .Where(uci => uci.UserCollection.UserId == userId) // Filter by userId
-                    .Include(uci => uci.MediaItem) // Include the MediaItem
-                     .Select(uci => new UserMediaItems // Project to UserMediaItems
+                    .Where(uci => uci.UserCollection.UserId == userId) 
+                    .Include(uci => uci.MediaItem) 
+                     .Select(uci => new UserMediaItems 
                       {
-                        MediaItemId = uci.MediaItemId,  // Map MediaItemId to MediaItem in UserMediaItems
-                        Title = uci.MediaItem.Title,  // Map Title to Title in UserMediaItems
-                        Genres = uci.MediaItem.Genres, // Map Genres to Genres in UserMediaItems
-                        Rating = (int)uci.Rating,          // Include Rating
-                        Progress = uci.Progress       // Include Progress
+                        MediaItemId = uci.MediaItemId, 
+                        Title = uci.MediaItem.Title, 
+                        Genres = uci.MediaItem.Genres,
+                        Rating = (int)uci.Rating,          
+                        Progress = uci.Progress       
                      })
                      .ToListAsync();
         }
+
+        // Add Media Item to Collection
+        // _context.UserCollectionItems,Add();
     }
 }

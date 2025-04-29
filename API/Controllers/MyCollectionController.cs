@@ -1,4 +1,5 @@
-﻿using MediaNest.Application.UseCases.UserCollectionManagment;
+﻿using API.ViewModels;
+using MediaNest.Application.UseCases.UserCollectionManagment;
 using MediaNest.Domain.Model;
 using MediaNest.Infrastructure.Data;
 using Microsoft.AspNetCore.Authorization;
@@ -26,14 +27,20 @@ namespace API.Controllers
             var user = await _userManager.GetUserAsync(User);
             
             var id = user.Id;
-            Console.WriteLine(id);
             if (id is not null)
             {
-
                 if (ModelState.IsValid)
                 {
-                    var mediaItems = await _userCollectionService.GetAllUserMediaItems(id);
-                    return View(mediaItems);
+                    var viewModel = new MyCollectionViewModel
+                    {
+                        SearchRequest = new MediaItemSearchRequest
+                        {
+                            SearchText = string.Empty // Initialize required property  
+                        },
+                        Items = await _userCollectionService.GetAllUserMediaItems(id)
+                    };
+                    
+                    return View(viewModel);
                 }
                 
             }

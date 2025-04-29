@@ -8,7 +8,7 @@ namespace MediaNest.Domain.Model
 {
     public class MediaItemSearchRequest
     {
-        public required string SearchText { get; set; }
+        public string? SearchText { get; set; }
 
         public string Type { get; set; } = null!;
 
