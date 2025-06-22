@@ -25,13 +25,13 @@ namespace MediaNest.Infrastructure.Data
             // Many-to-many relationship between UserCollection and MediaItem through UserCollectionItems
             builder.Entity<UserCollectionItems>()
                 .HasOne(uci => uci.UserCollection)
-                .WithMany(uc => uc.Items) // <- needed
+                .WithMany(uc => uc.Items) 
                 .HasForeignKey(uci => uci.UserCollectionId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             builder.Entity<UserCollectionItems>()
                 .HasOne(uci => uci.MediaItem)
-                .WithMany(mi => mi.InCollections) // <- needed
+                .WithMany(mi => mi.InCollections) 
                 .HasForeignKey(uci => uci.MediaItemId)
                 .OnDelete(DeleteBehavior.Cascade);
 

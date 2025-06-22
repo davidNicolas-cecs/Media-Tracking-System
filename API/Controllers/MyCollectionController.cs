@@ -12,6 +12,7 @@ namespace API.Controllers
     [Authorize]
     public class MyCollectionController : Controller
     {
+        // DI on Interface UserCollectionService
         private readonly IUserCollectionService _userCollectionService;
         private UserManager<ApplicationUser> _userManager;
 
@@ -53,7 +54,13 @@ namespace API.Controllers
             if (ModelState.IsValid)
             {
                 // get user first
-
+                var user = await _userManager.GetUserAsync(User);
+                var id = user.Id;
+                if (id is not null)
+                {
+                    await _userCollectionService.AddToUserCollection(mediaItemId, id);
+                }
+                Console.Write(mediaItemId);
                 Console.WriteLine(1);
             }
             
