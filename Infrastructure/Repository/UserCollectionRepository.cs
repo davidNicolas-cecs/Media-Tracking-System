@@ -43,18 +43,30 @@ namespace MediaNest.Infrastructure.Repository
         public async Task AddToUserCollection(int mediaId, string userId)
         {
             // get user CollectionId
-            var collectionId = await _context.UserCollections.Where(uc => uc.UserId == userId).Select(ui => ui.Id).FirstOrDefaultAsync();
-            var data = new UserCollectionItems
+            // make sure first that we dont already have an entry for this
+            // *******
+            var userCollectionId = await _context.UserCollections.Where(uc => uc.UserId == userId).Select(ui => (int?)ui.Id).FirstOrDefaultAsync();
+            var mediaItemExists = await _context.UserCollectionItems.Where(uc => uc.UserCollectionId == userCollectionId).Where(uc => uc.MediaItemId == mediaId).Select(ui=>(int?)ui.MediaItemId).FirstOrDefaultAsync();
+            Console.WriteLine(mediaItemExists);
+            Console.WriteLine(userCollectionId);
+            if (mediaItemExists != null)
             {
-                UserCollectionId = collectionId,
-                MediaItemId = mediaId,
-                Progress = Progress.InProgress,
-                Rating = 0
-            };
-            _context.UserCollectionItems.Add(data);
-            await _context.SaveChangesAsync();
+                Console.WriteLine("Found media Item already");
+                return;
+            }
+            if (userCollectionId != null)
+            {
+                var data = new UserCollectionItems
+                {
+                    UserCollectionId = userCollectionId.Value,
+                    MediaItemId = mediaId,
+                    Progress = Progress.InProgress,
+                    Rating = 0
+                };
+                _context.UserCollectionItems.Add(data);
+                await _context.SaveChangesAsync();
+            }
 
     }
-    // _context.UserCollectionItems,Add();
 }
 }
